@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jastipin - Titip Apa Saja, Dari Mana Saja</title>
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --primary-purple: #ea00bf; /* Ungu Primer */
+            --dark-purple: #3700B3;
+            --light-bg: #f5f0ff;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--text-light); color: var(--text-dark); line-height: 1.6; }
+
+
+        .container {
+            max-width: 100%
+        }
+
+        h1, h2, h3 {
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3rem; /* 48px */
+        }
+
+        h2 {
+            font-size: 2.25rem; /* 36px */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        /* --- Navbar --- */
+        /* Navbar warna biru */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 0;   /* dari 20px → 10px */
+    z-index: 100;
+    background: #09012c;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;  /* dari 40px → 30px supaya tidak mepet tapi tidak terlalu lebar */
+}
+
+/* Sesuaikan ukuran logo juga */
+.navbar-logo {
+    width: 70px;   /* dari 85px → 70px */
+    height: auto;
+}
+
+
+
+        .navbar nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .playstore-btn img {
+    width: 180px;     /* Sesuaikan ukuran */
+    height: auto;
+    display: block;
+}
+
+        .appstore-btn img {
+    width: 180px;     /* Sesuaikan ukuran */
+    height: auto;
+    display: block;
+}
+
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #037bf4 100%);
+            color: var(--text-light);
+            padding-top: 150px;
+            min-height: 90vh;
+            position: relative;    /* penting supaya tombol bisa absolute */
+        }
+
+        .next-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 28px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.next-btn:hover {
+    background: rgba(255,255,255,0.35);
+}
+
+.back-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-150%);
+    padding: 12px 28px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255,255,255,0.35);
+}
+
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+             padding-left: 60px;    /* Geser text + tombol ke kanan */
+    max-width: 600px;      /* Supaya teks tidak terlalu panjang */
+        }
+
+        .hero-text h1 {
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .store-buttons {
+    display: flex;
+    align-items: center;   /* MENYAMAKAN TINGGI secara otomatis */
+    gap: 15px;             /* jarak antara tombol */
+}
+
+.store-buttons img {
+    height: 55px;          /* samakan tinggi untuk Google Play & App Store */
+    width: auto;
+    display: block;
+}
+
+
+        .store-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #FFFFFF;
+            color: #333;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            /* GANTI DENGAN GAMBAR ANDA */
+            border: 1px solid #ddd; 
+        }
+
+        .hero-mockup {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+
+        .phone-mockup {
+    position: relative;
+    width: 300px;            /* sesuaikan */
+}
+
+.mockup-frame {
+    width: 100%;
+    display: block;
+}
+
+.mockup-screen {
+    position: absolute;
+    top: 20px;               /* SESUAIKAN supaya pas */
+    left: 17px;              /* SESUAIKAN */
+    width: 265px;            /* SESUAIKAN */
+    height: 563px;           /* SESUAIKAN */
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+
+        /* --- Features Section --- */
+        .features {
+            background: var(--light-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: #FFFFFF;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .feature-item .icon {
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+            /* GANTI DENGAN <img> IKON ANDA */
+        }
+
+        .feature-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- How It Works Section --- */
+        .how-it-works {
+            background: #FFFFFF;
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-item .icon {
+            font-size: 3rem;
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+            /* GANTI DENGAN <img> IKON ANDA */
+        }
+
+        .step-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- Custom Request Section --- */
+        .custom-request {
+            background: var(--light-bg);
+        }
+        
+        .custom-request .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .custom-request-text {
+            flex: 1;
+        }
+
+        .custom-request-text h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .custom-request-text p {
+            margin-bottom: 20px;
+        }
+
+        .custom-request-list li {
+            list-style-type: '✓'; /* Checkmark */
+            margin-left: 20px;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        .custom-request-mockup {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- Final CTA Section --- */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #4a00e0 100%);
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            text-align: center;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #037bf4 100%);
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .social-media a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero .container,
+            .custom-request .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .custom-request .container {
+                /* Balik urutan di mobile */
+                flex-direction: column-reverse;
+            }
+
+            .custom-request-text h2 {
+                text-align: center;
+            }
+            
+            .store-buttons {
+                justify-content: center;
+            }
+
+            .hero-mockup {
+                margin-top: 40px;
+            }
+
+            .mockup-placeholder {
+                width: 250px;
+                height: 500px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                flex-direction: column;
+            }
+        }
+
+        .hero-slider {
+    display: flex;
+    width: 700%; /* 7 slides */
+    transition: transform 0.8s ease;
+}
+
+.slide {
+    width: 100vw;
+    flex-shrink: 0;
+}
+
+.hero-buttons {
+    position: absolute;
+    bottom: 25px; /* geser lebih ke bawah */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 25px; /* jarak antara tombol */
+}
+
+.hero-buttons button {
+    padding: 12px 32px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.hero-buttons button:hover {
+    background: rgba(255,255,255,0.35);
+}
+
+
+    </style>
+    
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-container">
+                <img src="LOGO PINK.png" alt="logo" class="navbar-logo">
+            </div>  
+        </div>
+    </header>
+
+    <main>
+
+       <div class="hero-slider">
+
+    <!-- HERO 1 -->
+    <section class="hero slide">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Titip Apa Saja, Dari Mana Saja.</h1>
+                <p>Temukan barang impianmu dari seluruh dunia. Dititip melalui Jastiper terpercaya dengan aman dan mudah.</p>
+                
+                <div class="store-buttons">
+                    <a href="https://play.google.com/store/games?hl=id" class="store-btn">
+                        <img src="ps.webp" alt="Google Play">
+                    </a>
+                    <a href="https://apps.apple.com/us/iphone/today" class="store-btn">
+                        <img src="as.webp" alt="App Store">
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-mockup">
+                <div class="phone-mockup">
+                    <img src="ip16pm.png" class="mockup-frame">
+                    <img src="home.png" class="mockup-screen">
+                </div>
+            </div>
+        </div>
+        <button class="next-btn" onclick="nextSlide()">Next</button>
+    </section>
+
+    <!-- HERO 2 (PLACEHOLDER) -->
+    <section class="hero slide">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Cari Traveler Terpercaya</h1>
+                <p>Temukan Jastiper yang tepat untuk membelikan barang yang kamu butuhkan.</p>
+            </div>
+
+            <div class="hero-mockup">
+                <div class="phone-mockup">
+                    <img src="ip16pm.png" class="mockup-frame">
+                    <img src="search.png" class="mockup-screen">
+                </div>
+            </div>
+        </div>
+        <div class="hero-buttons">
+    <button class="back-btn" onclick="prevSlide()">Back</button>
+    <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+    </section>
+
+    <!-- HERO 3 -->
+    <section class="hero slide">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Komunitas Jastiper & Pembeli</h1>
+                <p>Terhubung, berbagi pengalaman, dan temukan rekomendasi dari pengguna lain.</p>
+            </div>
+            <div class="hero-mockup">
+                <div class="phone-mockup">
+                    <img src="ip16pm.png" class="mockup-frame">
+                    <img src="komunitas.png" class="mockup-screen">
+                </div>
+            </div>
+        </div>
+        <div class="hero-buttons">
+    <button class="back-btn" onclick="prevSlide()">Back</button>
+    <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+    </section>
+
+    <!-- HERO 4 -->
+    <section class="hero slide">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Request Barang Impianmu</h1>
+                <p>Ajukan barang yang kamu cari dan dapatkan penawaran dari Jastiper.</p>
+            </div>
+            <div class="hero-mockup">
+                <div class="phone-mockup">
+                    <img src="ip16pm.png" class="mockup-frame">
+                    <img src="request.png" class="mockup-screen">
+                </div>
+            </div>
+        </div>
+        <div class="hero-buttons">
+    <button class="back-btn" onclick="prevSlide()">Back</button>
+    <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+    </section>
+
+    <!-- HERO 5 -->
+    <section class="hero slide">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Informasi Barang yang Transparan</h1>
+                <p>Semua informasi ditampilkan secara lengkap agar kamu bisa memilih dengan yakin.</p>
+            </div>
+            <div class="hero-mockup">
+                <div class="phone-mockup">
+                    <img src="ip16pm.png" class="mockup-frame">
+                    <img src="informasi.png" class="mockup-screen">
+                </div>
+            </div>
+        </div>
+        <div class="hero-buttons">
+    <button class="back-btn" onclick="prevSlide()">Back</button>
+</div>
+    </section>
+</div>
+
+
+        <section id="fitur" class="features">
+            <div class="container">
+                <h2>Kenapa Jastipin Pilihan Terbaik?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="icon">🛡</div> <h3>Sistem Escrow Terjamin</h3>
+                        <p>Uang Anda aman di rekening bersama dan baru diteruskan ke Jastiper setelah pesanan terkonfirmasi.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">✅</div> <h3>Jastiper Terverifikasi</h3>
+                        <p>Terhubung dengan ratusan Jastiper terverifikasi dari berbagai negara. Lihat review mereka.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">💬</div> <h3>Transparan & Nego Langsung</h3>
+                        <p>Diskusikan detail barang dan negosiasikan biaya jastip langsung dengan Jastiper via live chat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cara-kerja" class="how-it-works">
+            <div class="container">
+                <h2>Titip Barang Impian dalam 3 Langkah</h2>
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="icon">🔍</div> <h3>1. Cari atau Request</h3>
+                        <p>Jelajahi "Open Trip" yang ada atau buat "Custom Request" untuk barang spesifik yang Anda inginkan.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="icon">🤝</div> <h3>2. Deal & Bayar Aman</h3>
+                        <p>Sepakati harga dengan Jastiper. Lakukan pembayaran aman melalui sistem escrow Jastipin.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="icon">📦</div> <h3>3. Terima Pesanan</h3>
+                        <p>Jastiper akan membelikan dan mengirimkan barang. Anda tinggal duduk manis menunggu barang impian tiba!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        <section class="custom-request">
+            <div class="container">
+                <div class="custom-request-mockup">
+                    <div class="mockup-placeholder">
+                        Mockup Halaman Request
+                    </div>
+                </div>
+                <div class="custom-request-text">
+                    <h2>Punya Barang Incaran Spesifik?</h2>
+                    <p>Tidak menemukan barang di Open Trip? Buat pesanan custom Anda sendiri! Cukup upload foto atau link, Jastiper kami akan mencarikannya untuk Anda.</p>
+                    <ul class="custom-request-list">
+                        <li>Upload foto atau link produk.</li>
+                        <li>Terima penawaran dari berbagai Jastiper.</li>
+                        <li>Pilih penawaran harga terbaik.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    -->
+    </main>
+
+    <footer class="footer">
+            <p>Copyright &copy; 2025 Jastipin. All rights reserved.</p>
+    </footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
